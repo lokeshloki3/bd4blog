@@ -5,7 +5,7 @@ const Comment = require("../models/commentModel");
 // BUSINESS LOGIC
 exports.createComment = async (req, res) => {
   try {
-    // Fetch data from request body - post is id here
+    // Fetch data from request body - post is id here which is written in request body itself
     const { post, user, body } = req.body;
 
     //Create a comment object
