@@ -18,3 +18,21 @@ exports.createPost = async (req, res) => {
     });
   }
 };
+
+exports.getAllPosts = async (req, res) => {
+    try{
+        // only ids in comments and likes
+        // const posts = await Post.find();
+        // full comments data also in comments
+        const posts = await Post.find().populate("comments").exec();
+        // const posts = await Post.find().populate("likes").populate("comments").exec();
+        res.json({
+            posts,
+        })
+
+    } catch(error) {
+        return res.status(400).json({
+            error: "Error while fetching all posts",
+        });
+    }
+}
