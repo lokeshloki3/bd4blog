@@ -1,3 +1,4 @@
+// instance of express and server created
 const express = require("express");
 const app = express();
 
@@ -9,10 +10,11 @@ const app = express();
 //     res.send(`<h1>This is Home</h1>`)
 // })
 
+// env files configs loaded in process object and trying to find PORT from there
 require("dotenv").config();
 const PORT = process.env.PORT || 3000;
 
-// middleware
+// middleware - parse json from body
 app.use(express.json());
 
 const blog = require("./routes/blog");
@@ -22,7 +24,7 @@ app.use("/api/v1", blog);
 const connectWithDb = require("./config/database");
 connectWithDb();
 
-// start the server
+// activate the server
 app.listen(PORT, () => {
   console.log(`App started at ${PORT}`);
 });
